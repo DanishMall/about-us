@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+.card {
+    flex: 1 1 calc(33.33% - 30px); /* Default: 3 cards per row with gap */
+    max-width: calc(33.33% - 30px);
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    height: 60%;
+    background-size: cover;
+    background-position: center;
+    transition: height 0.3s ease;
+}
+
+.card-content {
+    padding: 25px;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.card-link {
+    display: flex;
+    align-items: center;
+    color: #f0f0f0;
+    font-weight: 600;
+    gap: 10px;
+    transition: transform 0.2s ease;
+}
+
+.card-link:hover {
+    transform: translateX(5px);
+}
+
+.card-link svg {
+    stroke: #f0f0f0;
+}
+
+/* First Card Theme */
+.card-first .card-image {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        url("/api/placeholder/600/400?text=First+Page");
+}
+
+.card-first {
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    color: white;
+}
+
+.card-first .card-content {
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+}
+
+.card-first .card-content h2 {
+    color: white;
+}
+
+.card-first .card-content p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Second Card Theme */
+.card-second .card-image {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        url("/api/placeholder/600/400?text=Second+Page");
+}
+
+.card-second {
+    background: linear-gradient(to right, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.card-second .card-content {
+    background: linear-gradient(to right, #11998e 0%, #38ef7d 100%);
+}
+
+.card-second .card-content h2 {
+    color: white;
+}
+
+.card-second .card-content p {
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        height: 300px;
+    }
+    .container {
+        gap: 20px; /* Reduce gap for medium screens */
+    }
+    .card {
+        flex: 1 1 calc(50% - 20px); /* 2 cards per row for medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        gap: 25px;
+    }
+
+    .card {
+        height: 250px;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-content h2 {
+        font-size: 20px;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
+    .card-image {
+        height: 10%;
+    }
+    
+}
+
+@media (max-width: 576px) {
+    .container {
+        gap: 40px;
+    }
+
+    .card-content {
+        padding: 25px;
+    }
+
+    .card-content h2 {
+        font-size: 18px;
+    }
+
+    .card-content p {
+        font-size: 12px;
+    }
+    .card-image {
+        height: 10%;
+    }
+    .card {
+        flex: 1 1 calc(100% - 15px); /* 1 card per row for small screens */
+        max-width: calc(100% - 15px);
+    }
+}
