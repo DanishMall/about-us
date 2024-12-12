@@ -13,10 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
         <section class="profile">
             <img src="./images/us.png" alt="Danish Ikmal" class="profile-image">
@@ -1135,6 +1139,89 @@
             });
         }
     </script>
+    <!-- Preloader .JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader functionality
+            const preloader = document.querySelector('.preloader');
+            
+            // Hide preloader when page is fully loaded
+            window.addEventListener('load', () => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500); // Matches the fade-out transition
+            });
 
+            // Navigation Toggle for Mobile
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show-menu');
+            });
+
+            // Active Link Highlighting
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function highlightActiveLink() {
+                const scrollY = window.pageYOffset;
+                
+                navLinks.forEach(link => {
+                    const section = document.querySelector(link.getAttribute('href'));
+                    
+                    if (section) {
+                        const sectionTop = section.offsetTop - 50;
+                        const sectionHeight = section.offsetHeight;
+
+                        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                            link.classList.add('active-link');
+                        } else {
+                            link.classList.remove('active-link');
+                        }
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightActiveLink);
+
+            // Smooth Scroll for Navigation Links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu after selecting a link
+                        navMenu.classList.remove('show-menu');
+                    }
+                });
+            });
+
+            // Form Submission Handler (Basic Example)
+            const contactForm = document.querySelector('.contact-form');
+            
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Basic form validation
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const message = document.getElementById('message');
+
+                if (name.value && email.value && message.value) {
+                    alert('Message sent successfully! (Note: This is a demo. Actual submission requires backend implementation)');
+                    contactForm.reset();
+                } else {
+                    alert('Please fill out all fields.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

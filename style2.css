@@ -157,10 +157,6 @@ body {
         gap: 25px;
     }
 
-    .card {
-        height: 250px;
-    }
-
     .card-content {
         padding: 20px;
     }
@@ -174,6 +170,10 @@ body {
     }
     .card-image {
         height: 10%;
+    }
+    .card {
+        flex: 1 1 calc(100% - 15px); /* 1 card per row for small screens */
+        max-width: calc(100% - 15px);
     }
     
 }
@@ -195,7 +195,11 @@ body {
         font-size: 12px;
     }
     .card-image {
-        height: 10%;
+        width: 100%; /* Ensure the image scales responsively */
+        height: auto; /* Maintain aspect ratio */
+        max-height: 150px; /* Prevent the image from being too high */
+        object-fit: cover; /* Ensure the image covers the available space without stretching */
+        border-radius: 8px;
     }
     .card {
         flex: 1 1 calc(100% - 15px); /* 1 card per row for small screens */
