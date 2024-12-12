@@ -303,7 +303,7 @@ body {
 }
 
 .card-content {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
 }
 
@@ -314,9 +314,9 @@ body {
 }
 
 .card-content p {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     color: var(--text-light);
-    line-height: 1.4;
+    line-height: 1.6;
 }
 /* Memory Carousel */
 .memory-carousel {
