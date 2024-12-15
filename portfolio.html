@@ -113,7 +113,7 @@
                         <div class="about-info">
                             <div class="about-box">
                                 <div class="about-box-content">
-                                    <i class="ri-award-line about-icon"></i>
+                                    <i class="ri-medal-line about-icon"></i>
                                     <h3 class="about-title">Experience</h3>
                                     <span class="about-subtitle">5+ Years</span>
                                 </div>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="about-box">
                                 <div class="about-box-content">
-                                    <i class="ri-support-line about-icon"></i>
+                                    <i class="ri-customer-service-2-line about-icon"></i>
                                     <h3 class="about-title">Support</h3>
                                     <span class="about-subtitle">Online 24/7</span>
                                 </div>
@@ -320,7 +320,7 @@
                             </div>
                             <h3>Email</h3>
                             <p>danish@example.com</p>
-                            <a href="mailto:john.doe@example.com" class="contact-link">
+                            <a href="mailto:danish@example.com" class="contact-link">
                                 Send Email <i class="ri-send-plane-line"></i>
                             </a>
                         </div>
@@ -330,7 +330,7 @@
                             </div>
                             <h3>WhatsApp</h3>
                             <p>+60 12345678</p>
-                            <a href="https://wa.me/1234567890" class="contact-link">
+                            <a href="https://wa.me/12345678" class="contact-link">
                                 Start Chat <i class="ri-chat-3-line"></i>
                             </a>
                         </div>
@@ -346,7 +346,7 @@
                         </div>
                     </div>
                     <div class="contact-form-wrapper">
-                        <form class="contact-form">
+                        <form class="contact-form" method="POST" action="">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" placeholder=" " required>
                                 <label for="name">Your Name</label>
@@ -449,25 +449,161 @@
             });
 
             // Form Submission Handler (Basic Example)
-            const contactForm = document.querySelector('.contact-form');
-            
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Basic form validation
-                const name = document.getElementById('name');
-                const email = document.getElementById('email');
-                const message = document.getElementById('message');
+            // document.addEventListener('DOMContentLoaded', function() {
+            //     const contactForm = document.querySelector('.contact-form');
 
-                if (name.value && email.value && message.value) {
-                    alert('Message sent successfully! (Note: This is a demo. Actual submission requires backend implementation)');
-                    contactForm.reset();
-                } else {
-                    alert('Please fill out all fields.');
-                }
-            });
+            //     contactForm.addEventListener('submit', function(e) {
+            //         e.preventDefault();
+                    
+            //         // Get form elements
+            //         const nameInput = document.getElementById('name');
+            //         const emailInput = document.getElementById('email');
+            //         const messageInput = document.getElementById('message');
+
+            //         // Validate inputs
+            //         if (!validateForm(nameInput, emailInput, messageInput)) {
+            //             return;
+            //         }
+
+            //         // Create FormData object
+            //         const formData = new FormData(contactForm);
+
+            //         // Disable submit button to prevent multiple submissions
+            //         const submitBtn = contactForm.querySelector('.submit-btn');
+            //         submitBtn.disabled = true;
+            //         submitBtn.innerHTML = 'Sending... <i class="ri-loader-4-line"></i>';
+
+            //         // Send form data using Fetch API
+            //         fetch('contactForm.php', {
+            //             method: 'POST',
+            //             body: formData
+            //         })
+            //         .then(response => {
+            //             if (!response.ok) {
+            //                 throw new Error('Network response was not ok');
+            //             }
+            //             return response.json();
+            //         })
+            //         .then(data => {
+            //             if (data.message) {
+            //                 showFeedback(data.message, 'success');
+            //                 contactForm.reset(); // Reset the form fields
+            //             } else if (data.error) {
+            //                 showFeedback(data.error, 'error');
+            //             }
+            //         })
+            //         .catch(error => {
+            //             console.error('Error:', error);
+            //             showFeedback('Something went wrong. Please try again later.', 'error');
+            //         })
+            //         .finally(() => {
+            //             // Re-enable submit button
+            //             submitBtn.disabled = false;
+            //             submitBtn.innerHTML = 'Send Message <i class="ri-send-plane-fill"></i>';
+            //         });
+            //     });
+
+            //     function validateForm(nameInput, emailInput, messageInput) {
+            //         // Reset previous error states
+            //         clearValidationErrors(nameInput, emailInput, messageInput);
+
+            //         let isValid = true;
+
+            //         // Name validation
+            //         if (!nameInput.value.trim()) {
+            //             showValidationError(nameInput, 'Name is required');
+            //             isValid = false;
+            //         }
+
+            //         // Email validation
+            //         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            //         if (!emailInput.value.trim()) {
+            //             showValidationError(emailInput, 'Email is required');
+            //             isValid = false;
+            //         } else if (!emailRegex.test(emailInput.value.trim())) {
+            //             showValidationError(emailInput, 'Invalid email format');
+            //             isValid = false;
+            //         }
+
+            //         // Message validation
+            //         if (!messageInput.value.trim()) {
+            //             showValidationError(messageInput, 'Message is required');
+            //             isValid = false;
+            //         }
+
+            //         return isValid;
+            //     }
+
+            //     function showValidationError(inputElement, message) {
+            //         inputElement.classList.add('error');
+            //         const errorSpan = document.createElement('span');
+            //         errorSpan.className = 'error-message';
+            //         errorSpan.textContent = message;
+            //         inputElement.parentElement.appendChild(errorSpan);
+            //     }
+
+            //     function clearValidationErrors(nameInput, emailInput, messageInput) {
+            //         [nameInput, emailInput, messageInput].forEach(input => {
+            //             input.classList.remove('error');
+            //             const errorMessage = input.parentElement.querySelector('.error-message');
+            //             if (errorMessage) {
+            //                 errorMessage.remove();
+            //             }
+            //         });
+            //     }
+
+            //     function showFeedback(message, type) {
+            //         // Create feedback element
+            //         const feedbackElement = document.createElement('div');
+            //         feedbackElement.className = `feedback ${type}`;
+            //         feedbackElement.textContent = message;
+
+            //         // Insert feedback element after the form
+            //         contactForm.insertAdjacentElement('afterend', feedbackElement);
+
+            //         // Remove feedback after 5 seconds
+            //         setTimeout(() => {
+            //             feedbackElement.remove();
+            //         }, 5000);
+            //     }
+            // });
         });
     </script>
+    <!-- Contact Form -->
+    <!-- <script>
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const formData = new FormData(this);
+
+            // Send AJAX request
+            fetch('process_contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Show success message
+                    alert(data.message);
+                    // Optional: Reset form
+                    this.reset();
+                } else {
+                    // Show error messages
+                    if (data.errors) {
+                        alert(data.errors.join('\n'));
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script> -->
     <!-- progress bar -->
      <script>
         document.addEventListener('DOMContentLoaded', () => {
