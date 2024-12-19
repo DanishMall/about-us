@@ -5,68 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danish Ikmal - Our Dairy</title>
     <link rel="icon" type="image/dairy-icon" href="./images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
-</style>
 </head>
 <body>
-    <div class="container">
-        <a href="https://danishmall.github.io/elrah_exclusive/" class="card card-first">
-            <div class="card-image">
-                <img src="./images/black_white_elrah.png" alt="First Page" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <div>
-                    <h2>Elrah Exclusive Agents</h2>
-                    <p>Our platform serves as the gateway to Elrah Exclusive, providing agents with seamless access to essential resources, updates, and tools to elevate their sales journey.</p>
-                </div>
-                <div class="card-link">
-                    Explore Now 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </a>
-
-        <a href="about-us.html" class="card card-first">
-            <div class="card-image">
-                <img src="./images/us8.png" alt="First Page" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <div>
-                    <h2>Our Website</h2>
-                    <p>Our website is the digital face of our brand, offering users easy access to information, and a user-friendly way.</p>
-                </div>
-                <div class="card-link">
-                    Explore Now 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </a>
-
-        <a href="portfolio.html" class="card card-second">
-            <div class="card-image">
-                <img src="./images/us4.png" alt="Second Page" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <div>
-                    <h2>My Portfolio</h2> 
-                    <p>My portfolio is a reflection of my journey as a designer. It's a collection of my favorite projects, each one telling a story of growth, learning, and passion.</p>
-                </div>
-                <div class="card-link">
-                    Start Exploring 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
-            </div>
-        </a>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner"></div>
+        </div>
+        <div class="loader-text">Loading...</div>
     </div>
+
+    <!-- Main Content -->
+    <div class="main-content hidden">
+        <div class="container">
+            <a href="https://danishmall.github.io/elrah_exclusive/" class="card card-first" data-aos="fade-up">
+                <div class="card-image">
+                    <img src="./images/black_white_elrah.png" alt="Elrah Exclusive" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>Elrah Exclusive Agents</h2>
+                        <p>Our platform serves as the gateway to Elrah Exclusive, providing agents with seamless access to essential resources, updates, and tools to elevate their sales journey.</p>
+                    </div>
+                    <div class="card-link">
+                        Explore Now 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="about-us.html" class="card card-first" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-image">
+                    <img src="./images/us8.png" alt="About Us" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>Our Website</h2>
+                        <p>Our website is the digital face of our brand, offering users easy access to information, and a user-friendly way.</p>
+                    </div>
+                    <div class="card-link">
+                        Explore Now 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="portfolio.html" class="card card-second" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-image">
+                    <img src="./images/us4.png" alt="Portfolio" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>My Portfolio</h2>
+                        <p>My portfolio is a reflection of my journey as a designer. It's a collection of my favorite projects, each one telling a story of growth, learning, and passion.</p>
+                    </div>
+                    <div class="card-link">
+                        Start Exploring 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Hide loader
+            document.querySelector('.loader-wrapper').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.loader-wrapper').style.display = 'none';
+                // Show content
+                document.querySelector('.main-content').classList.remove('hidden');
+                // Trigger card animations
+                document.querySelectorAll('.card').forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
