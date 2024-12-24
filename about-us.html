@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animation-text-slide.css">
 </head>
 <body>
     <!-- Loader -->
@@ -56,6 +57,26 @@
             </div>
         </section>
 
+        <section class="header-container">
+            <div class="about-section">
+              <div class="sliding-text">
+                <div class="text-block1">ABOUT</div>
+                <div class="text-block1">ABOUT</div>
+                <div class="text-block1">ABOUT</div>
+                <div class="text-block1">ABOUT</div>
+                <div class="text-block1">ABOUT</div>
+                <div class="text-block1">ABOUT</div>
+              </div>
+            </div>
+            <div class="welcome-section">
+              <div class="sliding-text">
+                <div class="text-block2">WELCOME!</div>
+                <div class="text-block2">WELCOME!</div>
+                <div class="text-block2">WELCOME!</div>
+              </div>
+            </div>
+        </section>
+        
         <section class="social-media">
             <!-- <img 
                 class="social-video-background" 
@@ -474,6 +495,184 @@
         </footer>     
     </div>
 
+    <!-- Script Profile .JS-->
+    <!-- <script>
+   
+    document.addEventListener('DOMContentLoaded', () => {
+        const profileContainer = document.querySelector('.profile-image-container');
+        const profileImage = document.querySelector('.profile-image');
+        const fireEffect = document.querySelector('.fire-effect');
+
+        // Animation configuration
+        const config = {
+            particleCount: 30,
+            orbitSpeed: 0.5,
+            pulseSpeed: 2000,
+            glowIntensity: 0.5,
+            particleColors: [
+                'rgba(218, 165, 32, 0.3)',  // Gold
+                'rgba(255, 255, 255, 0.2)',  // White
+                'rgba(42, 42, 42, 0.2)'      // Premium Gray
+            ]
+        };
+
+        // Create orbiting particles
+        const createParticles = () => {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles-container';
+            profileContainer.appendChild(particlesContainer);
+
+            for (let i = 0; i < config.particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'orbit-particle';
+                particle.style.background = config.particleColors[i % config.particleColors.length];
+                particlesContainer.appendChild(particle);
+
+                // Set random initial positions
+                const angle = (i / config.particleCount) * Math.PI * 2;
+                const radius = 140 + Math.random() * 20;
+                particle.style.left = `${Math.cos(angle) * radius + radius}px`;
+                particle.style.top = `${Math.sin(angle) * radius + radius}px`;
+            }
+        };
+
+        // 3D Tilt Effect
+        const handleTilt = (e) => {
+            const rect = profileContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const rotateX = -((e.clientY - centerY) / rect.height) * 20;
+            const rotateY = ((e.clientX - centerX) / rect.width) * 20;
+
+            profileImage.style.transform = `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                scale(1.05)
+            `;
+
+            // Update particles position based on tilt
+            document.querySelectorAll('.orbit-particle').forEach(particle => {
+                particle.style.transform = `
+                    translate(${rotateY * 0.5}px, ${rotateX * 0.5}px)
+                    scale(${1 + Math.abs(rotateX + rotateY) * 0.01})
+                `;
+            });
+        };
+
+        // Magnetic Effect
+        const handleMagneticMove = (e) => {
+            const rect = profileContainer.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            document.querySelectorAll('.orbit-particle').forEach(particle => {
+                const particleRect = particle.getBoundingClientRect();
+                const particleX = particleRect.left - rect.left + particleRect.width / 2;
+                const particleY = particleRect.top - rect.top + particleRect.height / 2;
+                
+                const dx = mouseX - particleX;
+                const dy = mouseY - particleY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (100 - distance) / 100;
+                    
+                    particle.style.transform = `
+                        translate(
+                            ${Math.cos(angle) * force * 30}px,
+                            ${Math.sin(angle) * force * 30}px
+                        )
+                        scale(${1 + force * 0.3})
+                    `;
+                }
+            });
+        };
+
+        // Pulse Animation
+        const startPulseAnimation = () => {
+            const pulse = document.createElement('div');
+            pulse.className = 'profile-pulse';
+            profileContainer.appendChild(pulse);
+
+            setTimeout(() => pulse.remove(), 2000);
+        };
+
+        // Event Listeners
+        profileContainer.addEventListener('mousemove', (e) => {
+            handleTilt(e);
+            handleMagneticMove(e);
+        });
+
+        profileContainer.addEventListener('mouseleave', () => {
+            profileImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            document.querySelectorAll('.orbit-particle').forEach(particle => {
+                particle.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+
+        // Initialize
+        createParticles();
+        setInterval(startPulseAnimation, config.pulseSpeed);
+
+        // Add required styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .profile-image-container {
+                perspective: 1000px;
+                transform-style: preserve-3d;
+            }
+
+            .particles-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .orbit-particle {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                transition: transform 0.3s ease-out;
+            }
+
+            .profile-pulse {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background: radial-gradient(circle, var(--premium-accent) 0%, transparent 70%);
+                opacity: 0;
+                animation: pulseAnimation 2s ease-out forwards;
+            }
+
+            @keyframes pulseAnimation {
+                0% {
+                    transform: translate(-50%, -50%) scale(0.8);
+                    opacity: 0.5;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(1.2);
+                    opacity: 0;
+                }
+            }
+
+            .profile-image {
+                transition: transform 0.3s ease-out;
+                transform-style: preserve-3d;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+    </script> -->
     <!-- <script>
         function animateValue(elementId, end, duration) {
             const element = document.getElementById(elementId);
@@ -1157,5 +1356,69 @@
             }, 1000);
         });
     </script>
+    <!--Sliding Text-->
+    <!-- <script>
+        const observerOptions = {
+          root: null,
+          rootMargin: '20px 0px -20px 0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        };
+    
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const textBlocks = entry.target.querySelectorAll('.text-block1');
+            
+            if (entry.isIntersecting) {
+              const ratio = entry.intersectionRatio;
+              
+              textBlocks.forEach((block, index) => {
+                setTimeout(() => {
+                  if (ratio > 0.75) {
+                    block.classList.add('fully-visible');
+                    block.classList.remove('partial-visible');
+                  } else if (ratio > 0.25) {
+                    block.classList.add('partial-visible');
+                    block.classList.remove('fully-visible');
+                  }
+                }, index * 200); // Increased delay for more dramatic effect
+              });
+            } else {
+              textBlocks.forEach(block => {
+                block.classList.remove('partial-visible', 'fully-visible');
+              });
+            }
+          });
+        }, observerOptions);
+    
+        const aboutSection = document.querySelector('.about-section');
+        observer.observe(aboutSection);
+    
+        // Enhanced scroll handling
+        let scrollTimeout;
+        let lastScrollTop = 0;
+    
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimeout);
+    
+          const st = window.pageYOffset || document.documentElement.scrollTop;
+          const direction = st > lastScrollTop ? 'down' : 'up';
+          
+          scrollTimeout = setTimeout(() => {
+            const textBlocks = document.querySelectorAll('.text-block1');
+            
+            if (direction === 'up') {
+              textBlocks.forEach((block, index) => {
+                setTimeout(() => {
+                  block.classList.remove('fully-visible', 'partial-visible');
+                }, index * 150);
+              });
+            }
+          }, 50);
+    
+          lastScrollTop = st <= 0 ? 0 : st;
+        }, {
+          passive: true
+        });
+      </script> -->
 </body>
 </html>

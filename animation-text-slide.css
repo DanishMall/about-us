@@ -1,0 +1,127 @@
+.header-container {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+.sliding-text {
+  display: flex;
+  white-space: nowrap;
+  animation: slide 20s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.04em;
+}
+
+.text-block1 {
+  display: inline-flex;
+  text-transform: uppercase;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 3.3rem;    
+  line-height: 1;
+  color: black;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.text-block2 {
+  display: inline-flex;
+  text-transform: uppercase;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 6.5rem;    
+  line-height: 1;
+  margin-right: 50px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.about-section {
+  background: #ff69b4;
+  padding: 1.5rem 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-section {
+  background: #1a1a1a;
+  padding: 2rem 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.sliding-text {
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 786px) {
+  .text-block1 {
+    font-size: 2.5rem;
+    margin-right: 30px;
+    gap: 20px;
+  }
+  
+  .text-block2 {
+    font-size: 4.5rem;
+    margin-right: 30px;
+  }
+
+  .about-section {
+    padding: 1rem 0;
+  }
+
+  .welcome-section {
+    padding: 1.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-block1 {
+    font-size: 1.8rem;
+    margin-right: 20px;
+    gap: 15px;
+  }
+  
+  .text-block2 {
+    font-size: 3.2rem;
+    margin-right: 20px;
+  }
+
+  .about-section {
+    padding: 0.8rem 0;
+  }
+
+  .welcome-section {
+    padding: 1.2rem 0;
+  }
+}
+
+/* Performance Optimizations */
+.sliding-text > div {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth Animation Enhancement */
+@media (prefers-reduced-motion: no-preference) {
+  .sliding-text {
+    animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+}
