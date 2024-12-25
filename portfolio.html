@@ -885,5 +885,54 @@
             observer.observe(element);
         });
     </script>
+
+    <script>
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.skill-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+        
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+        
+        // Cursor Effect
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+        
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+        
+                const angleX = (y - centerY) / 15;
+                const angleY = (centerX - x) / 15;
+        
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(10px)`;
+                
+                // Update glow position
+                const blur = card.querySelector('.decoration-blur');
+                blur.style.left = `${x}px`;
+                blur.style.top = `${y}px`;
+            });
+        
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+        
+        const styleSheet = document.createElement('skills');
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+        </script>
 </body>
 </html>
