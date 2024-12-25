@@ -371,7 +371,7 @@ body {
 }
 
 .skill-tag {
-    background: rgba(255,255,255,0.1);
+    background: #ff69b4;
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
     font-size: 0.9rem;
@@ -383,7 +383,7 @@ body {
 }
 
 .skill-tag:hover {
-    background: rgba(255,255,255,0.2);
+    background: #fc238f;
     transform: translateY(-2px);
 }
 
@@ -782,7 +782,7 @@ body {
 
 /* Project Section */
 .projects-section {
-    background: var(--premium-black);
+    background: var(--bg-light);
     padding: 3rem 1.5rem;
     text-align: center;
 }
@@ -790,7 +790,7 @@ body {
 .projects-section h2 {
     font-size: 1.5rem;
     margin-bottom: 3rem;
-    color: var(--premium-white);
+    color: var(--premium-black);
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
