@@ -1,0 +1,224 @@
+@keyframes slideInDown {
+    from {
+      transform: translateY(-150%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+    @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+    }
+
+
+  .banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,240,240,0.98) 100%);
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    transform: translateY(-150%);
+    opacity: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    max-height: 200px;
+  }
+
+  .banner.show {
+    animation: slideInDown 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .banner-content {
+    flex-grow: 1;
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner-image-container {
+    flex: 0 0 240px;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .banner-image-container:hover {
+    transform: scale(1.02);
+  }
+
+  .banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .banner-image:hover {
+    transform: scale(1.05);
+  }
+
+  .banner-text {
+    flex-grow: 1;
+    padding: 0.5rem 0;
+    max-width: 600px;
+  }
+
+  .banner-title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+
+  .banner-description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .banner-cta {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 0.8rem;
+  }
+
+  .banner-button {
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Poppins', system-ui, sans-serif;
+}
+
+  .banner-button.primary {
+    background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner-button.primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 80%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    animation: shimmer 2s infinite;
+}
+
+  .banner-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.35);
+  }
+
+  .banner-close {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 2rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin: -0.5rem -0.5rem 0 0;
+  }
+
+  .banner-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+
+  /* Different banner types with enhanced gradients */
+  .banner.success {
+    background: linear-gradient(135deg, rgba(209,250,229,0.98) 0%, rgba(167,243,208,0.98) 100%);
+  }
+
+  .banner.warning {
+    background: linear-gradient(135deg, rgba(254,243,199,0.98) 0%, rgba(253,230,138,0.98) 100%);
+  }
+
+  .banner.info {
+    background: linear-gradient(135deg, rgba(219,234,254,0.98) 0%, rgba(191,219,254,0.98) 100%);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .banner {
+      max-height: none;
+      padding: 1rem;
+    }
+    
+    .banner-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .banner-image-container {
+      flex: 0 0 160px;
+      height: 100px;
+      width: 100%;
+    }
+
+    .banner-text {
+      padding: 0;
+    }
+
+    .banner-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .banner-description {
+      font-size: 0.95rem;
+    }
+
+    .banner-button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 0.75rem 1.5rem;
+    }
+  }

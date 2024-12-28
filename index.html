@@ -8,6 +8,7 @@
     <link rel="icon" type="image/dairy-icon" href="./images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="./css/banner.css">
 </head>
 <body>
     <!-- Loader -->
@@ -20,6 +21,25 @@
         </div>
         <div class="loader-text">Loading...</div>
     </div>
+
+    <!-- Add the banner section here -->
+    <section id="banner" class="banner">
+        <div class="banner-content">
+          <div class="banner-image-container">
+            <img src="/api/placeholder/240/140" alt="Premium Offer" class="banner-image">
+          </div>
+          <div class="banner-text">
+            <h3 class="banner-title">🚨 Limited Time Offer! 🚨</h3>
+            <p class="banner-description">Unlock Your 30% OFF Today – Just for YOU</p>
+            <div class="banner-cta">
+                <button class="banner-button primary" onclick="window.location.href='https://elrahexclusivemy.com/Collections.aspx?sq1=Bdy1DGSj0nESzakPcTO8eFIHOCyKZFh69W%2BiVDYnLX5T9u%2BAOeCeO4Q%2FmqA9aZE3';">
+                    Shop with 30% Off
+                </button>
+            </div>              
+          </div>
+        </div>
+        <button class="banner-close" onclick="closeBanner()">×</button>
+    </section>  
 
     <!-- Main Content -->
     <div class="main-content hidden">
@@ -85,6 +105,88 @@
             </a>
         </div>
     </div>
+
+     <!--SCRIPT BANNER-->
+     <script>
+        class PremiumBanner {
+          constructor(options = {}) {
+            this.banner = document.getElementById(options.id || 'banner');
+            this.autoHide = options.autoHide || false;
+            this.duration = options.duration || 5000;
+            this.type = options.type || '';
+            this.title = options.title || '';
+            this.description = options.description || '';
+            this.imageUrl = options.imageUrl || '/api/placeholder/240/140';
+            this.ctaText = options.ctaText || 'Learn More';
+            
+            this.init();
+          }
+    
+          init() {
+            if (this.type !== 'default') {
+              this.banner.classList.add(this.type);
+            }
+    
+            if (this.title || this.description) {
+              const titleEl = this.banner.querySelector('.banner-title');
+              const descEl = this.banner.querySelector('.banner-description');
+              const imgEl = this.banner.querySelector('.banner-image');
+              const ctaEl = this.banner.querySelector('.banner-button');
+    
+              if (this.title) titleEl.textContent = this.title;
+              if (this.description) descEl.textContent = this.description;
+              if (this.imageUrl) imgEl.src = this.imageUrl;
+              if (this.ctaText) ctaEl.textContent = this.ctaText;
+            }
+    
+            setTimeout(() => {
+              this.show();
+            }, 100);
+    
+            if (this.autoHide) {
+              setTimeout(() => {
+                this.hide();
+              }, this.duration);
+            }
+          }
+    
+          show() {
+            this.banner.classList.add('show');
+          }
+    
+          hide() {
+            this.banner.classList.remove('show');
+            setTimeout(() => {
+              this.banner.style.display = 'none';
+            }, 600);
+          }
+        }
+    
+        function closeBanner() {
+          const banner = document.getElementById('banner');
+          banner.classList.remove('show');
+          setTimeout(() => {
+            banner.style.display = 'none';
+          }, 600);
+        }
+    
+        function handleCTA() {
+          console.log('CTA clicked!');
+          // Add your CTA handling logic here
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+          const banner = new PremiumBanner({
+            id: 'banner',
+            type: 'default',
+            title: '🚨 Limited Time Offer! 🚨',
+            description: 'Unlock Your 30% OFF Today – Just for YOU',
+            imageUrl: '/images/black_white_elrah.png',
+            ctaText: 'Shop with 30% Off ⚡',
+            autoHide: false
+          });
+        });
+    </script>
 
     <script>
         window.addEventListener('load', function() {
