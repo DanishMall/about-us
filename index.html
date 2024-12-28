@@ -207,29 +207,57 @@
           localStorage.removeItem(this.storageKey);
         }
     
-        function closeBanner() {
-          const banner = document.getElementById('banner');
-          banner.classList.remove('show');
-          setTimeout(() => {
-            banner.style.display = 'none';
-          }, 600);
-        }
+        // function closeBanner() {
+        //   const banner = document.getElementById('banner');
+        //   banner.classList.remove('show');
+        //   setTimeout(() => {
+        //     banner.style.display = 'none';
+        //   }, 600);
+        // }
     
-        function handleCTA() {
-          console.log('CTA clicked!');
-          // Add your CTA handling logic here
-        }
+        // function handleCTA() {
+        //   console.log('CTA clicked!');
+        //   // Add your CTA handling logic here
+        // }
     
-        document.addEventListener('DOMContentLoaded', () => {
-          const banner = new PremiumBanner({
-            id: 'banner',
-            type: 'default',
-            title: '🚨 Limited Time Offer! 🚨',
-            description: 'Unlock Your 30% OFF Today – Just for YOU',
-            imageUrl: '/images/black_white_elrah.png',
-            ctaText: 'Shop with 30% Off ⚡',
-            autoHide: false
-          });
+        // document.addEventListener('DOMContentLoaded', () => {
+        //   const banner = new PremiumBanner({
+        //     id: 'banner',
+        //     type: 'default',
+        //     title: '🚨 Limited Time Offer! 🚨',
+        //     description: 'Unlock Your 30% OFF Today – Just for YOU',
+        //     imageUrl: '/images/black_white_elrah.png',
+        //     ctaText: 'Shop with 30% Off ⚡',
+        //     autoHide: false
+        //   });
+
+      }
+
+      // Enhanced close function with state management
+      function closeBanner() {
+        const banner = document.getElementById('banner');
+        banner.classList.remove('show');
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, 600);
+      }
+
+      function handleCTA() {
+        console.log('CTA clicked!');
+        // Add your CTA handling logic here
+      }
+
+      // Initialize banner with options
+      document.addEventListener('DOMContentLoaded', () => {
+        const banner = new PremiumBanner({
+          id: 'banner',
+          type: 'default',
+          title: '🚨 Limited Time Offer! 🚨',
+          description: 'Unlock Your 30% OFF Today – Just for YOU',
+          imageUrl: '/images/black_white_elrah.png',
+          ctaText: 'Shop with 30% Off ⚡',
+          autoHide: false,
+          cooldownDuration: 5 * 60 * 1000 // 20 minutes
         });
 
         // Expose banner instance globally for debugging (optional)
