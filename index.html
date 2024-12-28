@@ -109,57 +109,102 @@
      <!--SCRIPT BANNER-->
      <script>
         class PremiumBanner {
-          constructor(options = {}) {
-            this.banner = document.getElementById(options.id || 'banner');
-            this.autoHide = options.autoHide || false;
-            this.duration = options.duration || 5000;
-            this.type = options.type || '';
-            this.title = options.title || '';
-            this.description = options.description || '';
-            this.imageUrl = options.imageUrl || '/api/placeholder/240/140';
-            this.ctaText = options.ctaText || 'Learn More';
-            
-            this.init();
+        constructor(options = {}) {
+          this.banner = document.getElementById(options.id || 'banner');
+          this.autoHide = options.autoHide || false;
+          this.duration = options.duration || 5000;
+          this.cooldownDuration = options.cooldownDuration || 20 * 60 * 1000; // 20 minutes in milliseconds
+          this.type = options.type || '';
+          this.title = options.title || '';
+          this.description = options.description || '';
+          this.imageUrl = options.imageUrl || '/api/placeholder/240/140';
+          this.ctaText = options.ctaText || 'Learn More';
+          
+          this.storageKey = 'premiumBannerState';
+          this.init();
+        }
+
+        init() {
+          // Apply banner type if not default
+          if (this.type !== 'default') {
+            this.banner.classList.add(this.type);
           }
-    
-          init() {
-            if (this.type !== 'default') {
-              this.banner.classList.add(this.type);
-            }
-    
-            if (this.title || this.description) {
-              const titleEl = this.banner.querySelector('.banner-title');
-              const descEl = this.banner.querySelector('.banner-description');
-              const imgEl = this.banner.querySelector('.banner-image');
-              const ctaEl = this.banner.querySelector('.banner-button');
-    
-              if (this.title) titleEl.textContent = this.title;
-              if (this.description) descEl.textContent = this.description;
-              if (this.imageUrl) imgEl.src = this.imageUrl;
-              if (this.ctaText) ctaEl.textContent = this.ctaText;
-            }
-    
+
+          // Update content if provided
+          if (this.title || this.description) {
+            const titleEl = this.banner.querySelector('.banner-title');
+            const descEl = this.banner.querySelector('.banner-description');
+            const imgEl = this.banner.querySelector('.banner-image');
+            const ctaEl = this.banner.querySelector('.banner-button');
+
+            if (this.title) titleEl.textContent = this.title;
+            if (this.description) descEl.textContent = this.description;
+            if (this.imageUrl) imgEl.src = this.imageUrl;
+            if (this.ctaText) ctaEl.textContent = this.ctaText;
+          }
+
+          // Check if banner should be shown
+          if (this.shouldShowBanner()) {
             setTimeout(() => {
               this.show();
             }, 100);
-    
+
             if (this.autoHide) {
               setTimeout(() => {
                 this.hide();
               }, this.duration);
             }
           }
-    
-          show() {
-            this.banner.classList.add('show');
+        }
+
+        shouldShowBanner() {
+          const storedState = this.getBannerState();
+          
+          if (!storedState) {
+            return true;
           }
-    
-          hide() {
-            this.banner.classList.remove('show');
-            setTimeout(() => {
-              this.banner.style.display = 'none';
-            }, 600);
+
+          const now = new Date().getTime();
+          const timeSinceLastShow = now - storedState.lastShown;
+          
+          return timeSinceLastShow >= this.cooldownDuration;
+        }
+
+        getBannerState() {
+          try {
+            return JSON.parse(localStorage.getItem(this.storageKey));
+          } catch (e) {
+            return null;
           }
+        }
+
+        updateBannerState() {
+          const state = {
+            lastShown: new Date().getTime(),
+            interactions: (this.getBannerState()?.interactions || 0) + 1
+          };
+          
+          try {
+            localStorage.setItem(this.storageKey, JSON.stringify(state));
+          } catch (e) {
+            console.warn('Failed to save banner state:', e);
+          }
+        }
+
+        show() {
+          this.banner.classList.add('show');
+          this.updateBannerState();
+        }
+
+        hide() {
+          this.banner.classList.remove('show');
+          setTimeout(() => {
+            this.banner.style.display = 'none';
+          }, 600); // Match animation duration
+        }
+
+        reset() {
+          localStorage.removeItem(this.storageKey);
         }
     
         function closeBanner() {
@@ -181,11 +226,23 @@
             type: 'default',
             title: '🚨 Limited Time Offer! 🚨',
             description: 'Unlock Your 30% OFF Today – Just for YOU',
-            imageUrl: './images/black_white_elrah.png',
+            imageUrl: '/images/black_white_elrah.png',
             ctaText: 'Shop with 30% Off ⚡',
             autoHide: false
           });
         });
+
+        // Expose banner instance globally for debugging (optional)
+        window.premiumBanner = banner;
+      });
+
+      // Debug helper to force show banner (for testing)
+      function debugShowBanner() {
+        if (window.premiumBanner) {
+          window.premiumBanner.reset();
+          window.premiumBanner.show();
+        }
+      }
     </script>
 
     <script>
