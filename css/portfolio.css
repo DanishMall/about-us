@@ -671,6 +671,7 @@ img {
     color: var(--text-primary);
     position: relative;
     background: linear-gradient(135deg, var(--primary-black) 0%, var(--deep-charcoal) 100%);
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
